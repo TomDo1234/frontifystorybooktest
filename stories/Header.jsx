@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { Button } from './Button';
 import './header.css';
 
-export const Header = ({ user, onLogin, onLogout, onCreateAccount }) => (
+export const Header = ({ user, onLogin, onLogout, onCreateAccount ,lmao}) => (
   <header>
     <div className="wrapper">
+      {lmao}
       <div>
         <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fillRule="evenodd">
