@@ -13,15 +13,29 @@
   "scripts": {
     "dev": "frontity dev",
     "build": "frontity build",
-    "serve": "frontity serve"
+    "serve": "frontity serve",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "prettier": {},
   "dependencies": {
-    "frontity": "^1.17.2",
     "@frontity/core": "^1.15.1",
-    "@frontity/wp-source": "^1.11.7",
-    "@frontity/tiny-router": "^1.4.4",
     "@frontity/html2react": "^1.7.0",
-    "@frontity/mars-theme": "./packages/mars-theme"
+    "@frontity/mars-theme": "./packages/mars-theme",
+    "@frontity/tiny-router": "^1.4.4",
+    "@frontity/wp-source": "^1.11.7",
+    "frontity": "^1.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@storybook/addon-actions": "^6.5.3",
+    "@storybook/addon-essentials": "^6.5.3",
+    "@storybook/addon-interactions": "^6.5.3",
+    "@storybook/addon-links": "^6.5.3",
+    "@storybook/builder-webpack4": "^6.5.3",
+    "@storybook/manager-webpack4": "^6.5.3",
+    "@storybook/react": "^6.5.3",
+    "@storybook/testing-library": "^0.0.11",
+    "babel-loader": "^8.2.5"
   }
 }

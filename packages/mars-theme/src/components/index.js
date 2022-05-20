@@ -18,7 +18,8 @@ import PageError from "./page-error";
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-
+  const post = state.source[data.type][data.id];  
+  const foo = post.acf.test;
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -82,3 +83,4 @@ const Main = styled.div`
     rgba(66, 174, 228, 0)
   );
 `;
+

@@ -2,7 +2,7 @@ const settings = {
   "name": "frontity-storybook",
   "state": {
     "frontity": {
-      "url": "https://test.frontity.org",
+      "url": "http://frontitytest.local",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }
@@ -16,22 +16,6 @@ const settings = {
             [
               "Home",
               "/"
-            ],
-            [
-              "Nature",
-              "/category/nature/"
-            ],
-            [
-              "Travel",
-              "/category/travel/"
-            ],
-            [
-              "Japan",
-              "/tag/japan/"
-            ],
-            [
-              "About Us",
-              "/about-us/"
             ]
           ],
           "featured": {
@@ -45,7 +29,9 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://test.frontity.org"
+          "url": "http://frontitytest.local",
+          "homepage" : "/sample-page" ,
+          "postsPage" : "/posts-list"
         }
       }
     },
@@ -55,3 +41,4 @@ const settings = {
 };
 
 export default settings;
+
