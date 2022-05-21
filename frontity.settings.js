@@ -29,7 +29,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "http://frontitytest.local",
+          "url": "http://localhost:8000",
           "homepage" : "/sample-page" ,
           "postsPage" : "/posts-list"
         }
