@@ -9,7 +9,6 @@ module.exports = {
     "@storybook/addon-actions",
     "@storybook/addon-links",
     "@storybook/addon-docs",
-    "@storybook/addon-jest/register",
     "@storybook/addon-actions/register",
     "@storybook/addon-a11y/register",
     "@storybook/addon-viewport/register",
