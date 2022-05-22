@@ -1,4 +1,3 @@
-import React from "react";
 import { Global, css, connect, styled, Head } from "frontity";
 import Switch from "@frontity/components/switch";
 import Header from "./header";
@@ -7,18 +6,21 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
-import TailwindSample from "./TailwindSample";
+import React from 'react';
 
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
+ *
+ * @param props - The props injected by Frontity's {@link connect} HOC.
+ *
+ * @returns The top-level react component representing the theme.
  */
 const Theme = ({ state }) => {
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
   const post = state.source[data.type][data.id];  
   const foo = post.acf.test;
-
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -40,7 +42,6 @@ const Theme = ({ state }) => {
       {/* Add the main section. It renders a different component depending
       on the type of URL we are in. */}
       <Main>
-        <TailwindSample title="TEST Tailwind Commponent"></TailwindSample>
         <Switch>
           <Loading when={data.isFetching} />
           <List when={data.isArchive} />
@@ -83,5 +84,3 @@ const Main = styled.div`
     rgba(66, 174, 228, 0)
   );
 `;
-
-

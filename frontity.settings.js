@@ -29,6 +29,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
+          "api": "http://localhost:8000/wp-json",
           "url": "http://localhost:8000",
           "homepage" : "/sample-page" ,
           "postsPage" : "/posts-list"
