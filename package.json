@@ -36,7 +36,6 @@
 		"@storybook/addons": "^5.3.22",
 		"@storybook/preset-typescript": "^3.0.0",
 		"@storybook/react": "^5.3.21",
-		"@whitespace/storybook-addon-html": "^1.2.1",
 		"fork-ts-checker-webpack-plugin": "^4.1.6",
 		"react-test-renderer": "^16.13.1",
 		"ts-loader": "^7.0.5"

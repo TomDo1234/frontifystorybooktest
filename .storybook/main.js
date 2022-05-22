@@ -12,8 +12,7 @@ module.exports = {
     "@storybook/addon-actions/register",
     "@storybook/addon-a11y/register",
     "@storybook/addon-viewport/register",
-    "@storybook/addon-backgrounds/register",
-    "@whitespace/storybook-addon-html/register",
+    "@storybook/addon-backgrounds/register"
   ],
   webpackFinal: (config) => {
     // Frontity components are not compiled (!) so we have to make sure we compile them ourselves:
