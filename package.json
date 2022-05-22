@@ -24,11 +24,11 @@
 		"frontity": "^1.6.0"
 	},
 	"devDependencies": {
-		"@storybook/addon-a11y": "^6.5.3",
+		"@storybook/addon-a11y": "^5.3.22",
 		"@storybook/addon-actions": "^5.3.21",
 		"@storybook/addon-backgrounds": "^5.3.22",
 		"@storybook/addon-console": "^1.2.3",
-		"@storybook/addon-docs": "^6.5.3",
+		"@storybook/addon-docs": "^5.3.21",
 		"@storybook/addon-knobs": "^5.3.21",
 		"@storybook/addon-links": "^5.3.21",
 		"@storybook/addon-storyshots": "^5.3.21",
