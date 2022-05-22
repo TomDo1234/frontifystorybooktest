@@ -11,10 +11,7 @@
 		"build": "frontity build",
 		"serve": "frontity serve",
 		"storybook": "start-storybook -p 6006",
-		"build-storybook": "build-storybook",
-		"eslinter": "bash scripts/eslinter-pre-commit.sh",
-		"lint:prettier": "prettier --check 'packages/mars-theme/src/**/*.js'",
-		"fix:prettier": "prettier --write 'packages/mars-theme/src/**/*.js'"
+		"build-storybook": "build-storybook"
 	},
 	"prettier": {},
 	"dependencies": {
@@ -43,12 +40,7 @@
 		"@storybook/preset-typescript": "^3.0.0",
 		"@storybook/react": "^5.3.18",
 		"@whitespace/storybook-addon-html": "^1.2.1",
-		"eslint": "^7.32.0",
-		"eslint-plugin-import": "^2.20.2",
-		"eslint-plugin-react": "^7.30.0",
 		"fork-ts-checker-webpack-plugin": "^4.1.6",
-		"husky": "^4.2.5",
-		"jest": "^25.5.4",
 		"react-test-renderer": "^16.13.1",
 		"ts-loader": "^7.0.5"
 	}
