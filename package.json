@@ -30,11 +30,6 @@
 			"^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx"
 		}
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "bash scripts/eslinter-pre-commit.sh "
-		}
-	},
 	"prettier": {},
 	"dependencies": {
 		"@frontity/core": "^1.5.3",

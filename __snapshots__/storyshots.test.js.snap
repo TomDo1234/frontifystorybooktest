@@ -530,3 +530,11 @@ exports[`Storyshots Welcome to Storybook 1`] = `
   </p>
 </article>
 `;
+
+exports[`Storyshots linky Default 1`] = `
+<a
+  onClick={[Function]}
+>
+  4
+</a>
+`;
