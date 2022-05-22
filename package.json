@@ -26,8 +26,6 @@
 		"@storybook/addon-knobs": "^5.3.18",
 		"@types/lodash": "^4.14.182",
 		"frontity": "^1.6.0",
-		"tailwind.macro": "^1.0.0-alpha.10",
-		"tailwindcss": "^1.4.6",
 		"twin.macro": "^1.0.0"
 	},
 	"devDependencies": {
