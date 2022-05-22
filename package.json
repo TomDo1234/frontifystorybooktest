@@ -20,7 +20,6 @@
 		"@frontity/mars-theme": "./packages/mars-theme",
 		"@frontity/tiny-router": "^1.2.0",
 		"@frontity/wp-source": "^1.7.0",
-		"@storybook/addon-knobs": "^5.3.18",
 		"@types/lodash": "^4.14.182",
 		"frontity": "^1.6.0",
 		"twin.macro": "^1.0.0"
@@ -32,7 +31,7 @@
 		"@storybook/addon-console": "^1.2.1",
 		"@storybook/addon-docs": "^5.3.18",
 		"@storybook/addon-jest": "^5.3.18",
-		"@storybook/addon-knobs": "^5.3.18",
+		"@storybook/addon-knobs": "^5.3.21",
 		"@storybook/addon-links": "^5.3.18",
 		"@storybook/addon-storyshots": "^5.3.18",
 		"@storybook/addon-viewport": "^5.3.18",
