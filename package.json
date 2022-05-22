@@ -10,25 +10,11 @@
 		"dev": "frontity dev",
 		"build": "frontity build",
 		"serve": "frontity serve",
-		"storybook": "jest --json --outputFile=.jest-test-results.json; start-storybook -p 6006",
+		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
-		"test": "jest",
-		"test:generate-output": "jest --json --outputFile=.jest-test-results.json --watchAll",
 		"eslinter": "bash scripts/eslinter-pre-commit.sh",
 		"lint:prettier": "prettier --check 'packages/mars-theme/src/**/*.js'",
 		"fix:prettier": "prettier --write 'packages/mars-theme/src/**/*.js'"
-	},
-	"jest": {
-		"transformIgnorePatterns": [
-			"/node_modules/(?!(@frontity/components|@frontity/type-declarations|@frontity/connect|@frontity/error)/).*"
-		],
-		"moduleNameMapper": {
-			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
-		},
-		"transform": {
-			"^.+\\.[tj]sx?$": "babel-jest",
-			"^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx"
-		}
 	},
 	"prettier": {},
 	"dependencies": {
