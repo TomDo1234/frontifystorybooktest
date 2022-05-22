@@ -1,41 +1,84 @@
 {
-  "name": "frontity-storybook",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Frontity project",
-  "keywords": [
-    "frontity"
-  ],
-  "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
-  },
-  "scripts": {
-    "dev": "frontity dev",
-    "build": "frontity build",
-    "serve": "frontity serve",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
-  "prettier": {},
-  "dependencies": {
-    "@frontity/core": "^1.16.0",
-    "@frontity/html2react": "^1.7.0",
-    "@frontity/mars-theme": "./packages/mars-theme",
-    "@frontity/tiny-router": "^1.4.4",
-    "@frontity/wp-source": "^1.11.7",
-    "frontity": "^1.17.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.18.0",
-    "@storybook/addon-actions": "^6.5.3",
-    "@storybook/addon-essentials": "^6.5.3",
-    "@storybook/addon-interactions": "^6.5.3",
-    "@storybook/addon-links": "^6.5.3",
-    "@storybook/builder-webpack4": "^6.5.3",
-    "@storybook/manager-webpack4": "^6.5.3",
-    "@storybook/react": "^6.5.3",
-    "@storybook/testing-library": "^0.0.11",
-    "babel-loader": "^8.2.5"
-  }
+	"name": "frontity-storybook",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Frontity project",
+	"keywords": [
+		"frontity"
+	],
+	"scripts": {
+		"dev": "frontity dev",
+		"build": "frontity build",
+		"serve": "frontity serve",
+		"storybook": "jest --json --outputFile=.jest-test-results.json; start-storybook -p 6006",
+		"build-storybook": "build-storybook",
+		"test": "jest",
+		"test:generate-output": "jest --json --outputFile=.jest-test-results.json --watchAll",
+		"eslinter": "bash scripts/eslinter-pre-commit.sh",
+		"lint:prettier": "prettier --check 'packages/mars-theme/src/**/*.js'",
+		"fix:prettier": "prettier --write 'packages/mars-theme/src/**/*.js'"
+	},
+	"jest": {
+		"transformIgnorePatterns": [
+			"/node_modules/(?!(@frontity/components|@frontity/type-declarations|@frontity/connect|@frontity/error)/).*"
+		],
+		"moduleNameMapper": {
+			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js"
+		},
+		"transform": {
+			"^.+\\.[tj]sx?$": "babel-jest",
+			"^.+\\.mdx$": "@storybook/addon-docs/jest-transform-mdx"
+		}
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "bash scripts/eslinter-pre-commit.sh "
+		}
+	},
+	"prettier": {},
+	"dependencies": {
+		"@frontity/core": "^1.5.3",
+		"@frontity/html2react": "^1.3.2",
+		"@frontity/mars-theme": "./packages/mars-theme",
+		"@frontity/tiny-router": "^1.2.0",
+		"@frontity/wp-source": "^1.7.0",
+		"@storybook/addon-knobs": "^5.3.18",
+		"@types/lodash": "^4.14.152",
+		"frontity": "^1.6.0",
+		"tailwind.macro": "^1.0.0-alpha.10",
+		"tailwindcss": "^1.4.6",
+		"twin.macro": "^1.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.9.6",
+		"@babel/preset-env": "^7.9.6",
+		"@babel/preset-react": "^7.9.4",
+		"@babel/preset-typescript": "^7.9.0",
+		"@storybook/addon-a11y": "^5.3.18",
+		"@storybook/addon-actions": "^5.3.18",
+		"@storybook/addon-backgrounds": "^5.3.18",
+		"@storybook/addon-console": "^1.2.1",
+		"@storybook/addon-docs": "^5.3.18",
+		"@storybook/addon-jest": "^5.3.18",
+		"@storybook/addon-knobs": "^5.3.18",
+		"@storybook/addon-links": "^5.3.18",
+		"@storybook/addon-storyshots": "^5.3.18",
+		"@storybook/addon-viewport": "^5.3.18",
+		"@storybook/addons": "^5.3.18",
+		"@storybook/preset-typescript": "^3.0.0",
+		"@storybook/react": "^5.3.18",
+		"@whitespace/storybook-addon-html": "^1.2.1",
+		"babel-eslint": "^10.1.0",
+		"babel-jest": "^26.0.1",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-macros": "^2.8.0",
+		"eslint": "^7.1.0",
+		"eslint-plugin-import": "^2.20.2",
+		"eslint-plugin-react": "^7.20.0",
+		"fork-ts-checker-webpack-plugin": "^4.1.3",
+		"husky": "^4.2.5",
+		"jest": "^25.5.4",
+		"react-test-renderer": "^16.13.1",
+		"ts-loader": "^7.0.4"
+	}
 }

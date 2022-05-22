@@ -2,79 +2,86 @@
 
 This project was bootstrapped with [Frontity](https://frontity.org/).
 
-#### Table of Contents
+Developed with node v10.20.1 and npm 6.14.4.
 
-- [Launch a development server](#launch-a-development-server)
-- [Create your custom theme](#create-your-custom-theme)
-- [Create a production-ready build](#create-a-production-ready-build)
-- [Deploy](#deploy)
+## Jest integration
 
-### Launch a development server
+In order for test results to display correctly, you must have run
 
 ```
-npx frontity dev
+npm run test:generate-output
 ```
 
-Runs the app in development mode. Open http://localhost:3000 to view it in the browser.
+before, so that `.jest-test-results.json` can be read.
 
-The site will automatically reload if you make changes inside the `packages` folder. You will see the build errors in the console.
+💡**Suggestion:** Make sure in npm scripts, that `test:generate-output` always runs before `storybook` or `build-storybook`.
 
-> Have a look at our [Quick Start Guide](https://docs.frontity.org/getting-started/quick-start-guide)
+To add Jest results to a story, look at the following example story:
 
-### Create your custom theme
+```js
+// SomeComponent.stories.js
+// ...
+export const Default = () => <SomeComponent />;
 
-```
-npx frontity create-package your-custom-theme
-```
-
-Use the command `npx frontity create-package` to create a new package that can be set in your `frontity.settings.js` as your theme.
-
-> Have a look at our blog post [How to Create a React WordPress Theme in 30 Minutes](https://frontity.org/blog/how-to-create-a-react-theme-in-30-minutes/)
-
-### Create a production-ready build
-
-```
-npx frontity build
+// This is where we add Jest:
+Default.story = {
+  parameters: {
+    jest: ["SomeComponent.test.js"]
+  }
+};
 ```
 
-Builds the app for production to the `build` folder.
+Or view the working example in `packages/mars-theme/src/components/TailwindSample/TailwindSample.stories.js`.
 
-This will create a `/build` folder with a `server.js` (a [serverless function](https://vercel.com/docs/v2/serverless-functions/introduction)) file and a `/static` folder with all your javascript files and other assets.
+If you can't see the test results in the rendered story, try toggling addons by hitting `A` in storybook.
 
-Your app is ready to be deployed.
+## Using frontity components with Storybook and Jest
 
-> Get more info about [Frontity's architecture](https://docs.frontity.org/architecture)
+In order to use frontity components with Storybook or Jest, you need provide the necessary React context.
 
-### Deploy
+E.g. in a Jest test, do something like this:
 
-With the files generated in the _build_ you can deploy your project.
+```js
+import { Provider, createStore } from "@frontity/connect";
 
-#### As a node app
+// Create a store:
+// Mock store technique taken from frontity test suite: https://github.com/frontity/frontity/blob/83c5eadb4dffc6275fe4d93b8d379c21449a2727/packages/connect/src/__tests__/connect.tests.jsx#L11
+const store = createStore({
+  state: {
+    // Sensible state value taken from https://github.com/frontity/frontity/blob/83c5eadb4dffc6275fe4d93b8d379c21449a2727/packages/components/__tests__/image.jsdom.tests.tsx#L57
+    frontity: {
+      rendering: "ssr"
+    }
+  }
+});
 
-Use `npx frontity serve` to run it like a normal Node app.
+it("renders without crashing", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(
+    // Expose the store to child React components via the provider
+    <Provider value={store}>
+      <TailwindSample title="test" />
+    </Provider>,
+    div
+  );
+  ReactDOM.unmountComponentAtNode(div);
+});
+```
 
-This command generates (and runs) a small web server that uses the generated `server.js` and `/static` to serve your content.
+In storybook, you shouldn't have to worry about adding the context, because I've added it globally for every story in `.storybook/preview.js`:
 
-#### As a serverless service
+```js
+import { Provider, createStore } from "@frontity/connect";
 
-Upload your `static` folder to a CDN and your `server.js` file to a serverless service, like Vercel or Netlify.
+const store = createStore({
+  // ...
+});
 
-> Get more info about [how to deploy](https://docs.frontity.org/deployment) a Frontity project
+addDecorator(storyFn => <Provider value={store}>{storyFn()}</Provider>);
+```
 
----
+## Good to know
 
-## Frontity Community
-
-[![Community Forum Topics](https://img.shields.io/discourse/topics?color=blue&label=community%20forum&server=https%3A%2F%2Fcommunity.frontity.org%2F)](https://community.frontity.org/) [![Twitter: frontity](https://img.shields.io/twitter/follow/frontity?style=social)](https://twitter.com/frontity) [![Frontity GitHub Stars](https://img.shields.io/github/stars/frontity/frontity?style=social)](https://github.com/frontity/frontity)
-
-👋 &nbsp;We'd love for you to be part of the Frontity community. There are a variety of different ways in which you can find more information about the project, join in discussions about it, and also get involved:
-
-- **[Learn Frontity](https://frontity.org/learn/)**: in this page you can find Frontity's primary learning resources, including documentation resources, example projects, videos, and more.
-- **[Community forum](https://community.frontity.org/)**: Frontity's forum is a great place to ask questions, help fellow Frontity users, and share your projects. It's also where you can keep track of the development work, join feature discussions, and collaborate on building Frontity itself.
-- **[GitHub](https://github.com/frontity/frontity)**: for bug reports and code contributions. Questions are answered in the community forum.
-
-If you're looking for news and updates about Frontity, [Twitter](https://twitter.com/frontity) and the [blog](https://frontity.org/blog/) are pretty good places to start. You can also join the **[Frontity Newsletter](https://frontity.org/newsletter/)** and stay updated on new releases and features, learning resources, and community news.
-
-### Contributing
-
-Frontity welcomes contributions in all forms. There are many different ways to support the project. Check out the **[How to contribute](https://docs.frontity.org/contributing/how-to-contribute)** page for ideas on contributing and helping make Frontity better.
+- Jest 25 is installed (not Jest 26) because there are incompatibilities of Jest 26 with Storybook (see e.g. this [GitHub issue](https://github.com/storybookjs/storybook/issues/10631))
+- If you run `npm audit` you will see that a lot of the storybook addons come with security vulnerabilities
+- The frontity packages that are installed from npm (e.g. `@frontity/components`) are not compiled. This is very unusual and makes them pretty annoying to work with. Basically, we have to tell Jest (in `package.json`) and Storybook (in `.storybook/main.js`) that they should compile third-party code from `frontity`. This also makes TypeScript unhappy, so you will see quite a few TypeScript errors in the console. These come from frontity source files and luckily don't cause any tests or stories to break.

@@ -1,0 +1,30 @@
+import {
+  Meta,
+  Story,
+  Preview,
+  Props,
+  Description
+} from "@storybook/addon-docs/blocks";
+import MenuModal from "../MenuModal";
+import { menuModalHome } from "./MenuModalHome.story.js";
+menuModalHome.story = {
+  parameters: {
+    jest: ["MenuModal.test.js"]
+  }
+};
+
+<Meta title="Components|MenuModal (MDX)" component={MenuModal} />
+
+# MenuModal
+
+<Description of={MenuModal} />
+
+#
+
+<Preview>
+  <Story name="MenuModal">{menuModalHome()}</Story>
+</Preview>
+
+## Props
+
+<Props of={MenuModal} />

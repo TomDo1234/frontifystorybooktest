@@ -1,15 +1,7 @@
+import React from "react";
 import { connect, styled } from "frontity";
 import Image from "@frontity/components/image";
 
-/**
- * The Component that renders a featured media, typically an image. The featured
- * media can represent an individual Post, Page, or Custom Post Type.
- *
- * @param props - The state injected by {@link connect } and the ID of the
- * featured media.
- *
- * @returns A react component.
- */
 const FeaturedMedia = ({ state, id }) => {
   const media = state.source.attachment[id];
 
@@ -29,13 +21,11 @@ const FeaturedMedia = ({ state, id }) => {
       ) || null;
 
   return (
-    <Container isAmp={state.frontity.mode === "amp"}>
+    <Container>
       <StyledImage
         alt={media.title.rendered}
         src={media.source_url}
         srcSet={srcset}
-        width={media?.media_details?.width}
-        height={media?.media_details?.height}
       />
     </Container>
   );
@@ -46,7 +36,6 @@ export default connect(FeaturedMedia);
 const Container = styled.div`
   margin-top: 16px;
   height: 300px;
-  ${({ isAmp }) => isAmp && "position: relative;"};
 `;
 
 const StyledImage = styled(Image)`

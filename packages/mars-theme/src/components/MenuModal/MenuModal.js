@@ -1,7 +1,12 @@
 import React from "react";
-import { styled, connect } from "frontity";
-import Link from "./link";
+import PropTypes from "prop-types";
+import { connect } from "frontity";
+import Link from "../link";
+import styled from "@emotion/styled/macro";
 
+/**
+ *  Modal used to display the menu in mobile views.
+ */
 const MenuModal = ({ state }) => {
   const { menu } = state.theme;
   const isThereLinks = menu != null && menu.length > 0;
@@ -31,7 +36,7 @@ const MenuOverlay = styled.div`
   height: 100vh;
   overflow: hidden auto;
   position: fixed;
-  z-index: 2;
+  z-index: -1;
   top: 0;
   left: 0;
 `;
@@ -48,6 +53,11 @@ const MenuLink = styled(Link)`
   text-align: center;
   padding: 1.2rem 0;
 
+  /* Styles added only for storybook.*/
+  text-decoration: none;
+  color: white;
+  /* Styles added only for storybook.*/
+
   &:hover,
   &:focus {
     background-color: rgba(0, 0, 0, 0.05);
@@ -59,5 +69,12 @@ const MenuLink = styled(Link)`
     /* border-bottom: 4px solid yellow; */
   }
 `;
+
+MenuModal.propTypes = {
+  /**
+   * Frontity injected state: https://docs.frontity.org/learning-frontity/state
+   */
+  state: PropTypes.object
+};
 
 export default connect(MenuModal);

@@ -1,0 +1,50 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import globalStoreImage from "../assets/global-store.png";
+import noTestFoundImage from "../assets/no-test-found.png";
+import testFoundImage from "../assets/tests-found.png";
+
+<Meta title="Tasks|List" />
+
+## Storybook - specify a unique state for a store per story.
+
+In `packages/mars-theme/src/components/MenuModal/tests/MenuModalHome.story.js`
+
+I would like the state to contain `router: { link: "/" }`, and I expect the "Home" link to be yellow.
+
+In `packages/mars-theme/src/components/MenuModal/tests/MenuModalNature.story.js`
+
+I would like the state to contain `router.link = "/category/nature/"`, and I expect the "Nature" link to be yellow.
+
+I tried moving the store to each story and create its own store with the specified state. The store,
+seems to be global thus changing it one place affects the other story.
+
+## Absoulte Paths
+
+https://medium.com/better-programming/use-absolute-paths-with-react-51ced66f119f
+
+I was unable to configure the absolute paths. Ideally I'd like to use the base path of: `packages/mars-theme/src/`
+
+I'd like this, in VSCode, jest and frontity.
+
+## @whitespace/storybook-addon-html/react conflicts with Jest.
+
+THis is not as important as the above issues but when I uncomment the following and run `npm run test:generate-output` I get all sort of jest errors.
+
+```
+// File: frontity-storybook/.storybook/preview.js
+
+import { withHTML } from "@whitespace/storybook-addon-html/react";
+addDecorator(withHTML);
+```
+
+## Syntax issue with MDX and Jest
+
+In both mdx, and js version of a story I've got a test defined. But it only shows up in the CSF version.
+
+`packages/mars-theme/src/components/MenuModal/tests/MenuModalStory.stories.js`
+
+<img src={testFoundImage} />;
+
+`packages/mars-theme/src/components/MenuIcon/tests/MenuIcon.stories.mdx`
+
+<img src={noTestFoundImage} />;
