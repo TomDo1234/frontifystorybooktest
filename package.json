@@ -45,10 +45,10 @@
 		"twin.macro": "^1.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.9.6",
-		"@babel/preset-env": "^7.9.6",
-		"@babel/preset-react": "^7.9.4",
-		"@babel/preset-typescript": "^7.9.0",
+		"@babel/core": "^7.18.0",
+		"@babel/preset-env": "^7.18.0",
+		"@babel/preset-react": "^7.17.12",
+		"@babel/preset-typescript": "^7.17.12",
 		"@storybook/addon-a11y": "^5.3.18",
 		"@storybook/addon-actions": "^5.3.18",
 		"@storybook/addon-backgrounds": "^5.3.18",
